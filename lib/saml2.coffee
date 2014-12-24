@@ -4,7 +4,7 @@ crypto        = require 'crypto'
 debug         = require('debug') 'saml2'
 {parseString} = require 'xml2js'
 url           = require 'url'
-util          = require 'util'
+util          = require 'util'c
 xmlbuilder    = require 'xmlbuilder'
 xmlcrypto     = require 'xml-crypto'
 xmldom        = require 'xmldom'
@@ -58,11 +58,11 @@ create_metadata = (issuer, assert_endpoint, signing_certificate, encryption_cert
           { 'md:KeyDescriptor': certificate_to_keyinfo('encryption', encryption_certificate) },
           'md:AssertionConsumerService':
             '@Binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
-            '@Location': assert_endpoint
+            '@Location': assert_endpoint.sso_login_url
             '@index': '0'
           'md:SingleLogoutService':
             '@Binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
-            '@Location': assert_endpoint
+            '@Location': assert_endpoint.sso_logout_url
         ]
   .end()
 
